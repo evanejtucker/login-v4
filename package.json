@@ -1,0 +1,26 @@
+{
+  "name": "login-v4",
+  "version": "1.0.0",
+  "description": "login app using mongo, passport, express, node, and handlebars",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanejtucker/login-v4.git"
+  },
+  "author": "Evan E J Tucker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evanejtucker/login-v4/issues"
+  },
+  "homepage": "https://github.com/evanejtucker/login-v4#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0"
+  }
+}
