@@ -22,7 +22,7 @@ var exphbs  = require('express-handlebars');
 
 app.get('/', (req, res, next) =>  {
     // res.send('Hello World!')
-    res.render('index');
+    res.render('index' , {name: 'Evan'});
 });
 
 app.listen(port, () => {
