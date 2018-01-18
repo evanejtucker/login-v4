@@ -4,8 +4,10 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-var profile = require('./controller/routes/profile');
-var exphbs  = require('express-handlebars');
+const profile = require('./controller/routes/profile');
+const exphbs  = require('express-handlebars');
+const mongoose = require('mongoose');
+const Users = require('./models/Users.js');
 
     // handlebars
     app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -18,6 +20,15 @@ var exphbs  = require('express-handlebars');
     app.use(cookieParser());
     app.use(express.static('public'));
     app.use('/profile', profile)
+
+// mongoose
+mongoose.connect('mongodb://localhost/login-v4');
+mongoose.Promise = global.Promise;
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("successfully connected to db");
+});
 
 
 app.get('/', (req, res, next) =>  {
