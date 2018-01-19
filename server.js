@@ -13,27 +13,6 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const auth = require('./controller/passport.js');
 
-const logoutUser = (req,res,next)=> {
-    if(req.isAuthenticated()){
-        req.logout();
-        console.log('user logged out');
-        next();
-    } else {
-        console.log('user not logged in');
-        next();
-    }
-}
-
-const checkAuthentication = (req,res,next)=> {
-    if(req.isAuthenticated()){
-        //if user is looged in, req.isAuthenticated() will return true 
-        console.log('user authenticated');
-        next();
-    } else{
-        console.log("user not authenticated");
-        res.redirect("/failure");
-    }
-}
 
     // handlebars
     app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -50,7 +29,6 @@ const checkAuthentication = (req,res,next)=> {
         saveUninitialized: true,
     }));
     app.use(express.static('public'));
-    app.use('/profile', profile);
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -101,6 +79,8 @@ app.post('/newUser', (req, res, next) => {
     });
     res.redirect('/');
 });
+
+app.use('/profile', auth.checkAuthentication, profile);
 
 app.listen(port, () => {
     console.log('App listening on port ' + port);

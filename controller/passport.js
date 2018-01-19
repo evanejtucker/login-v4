@@ -30,5 +30,25 @@ passport.use(new LocalStrategy(
 
 
 module.exports = {
-    passport: passport
+    passport: passport,
+    checkAuthentication: (req, res, next)=> {
+        if(req.isAuthenticated()){
+            //if user is looged in, req.isAuthenticated() will return true 
+            console.log('user authenticated');
+            next();
+        } else{
+            console.log("user not authenticated");
+            res.redirect("/failure");
+        }
+    },
+    logoutUser: (req, res, next)=> {
+        if(req.isAuthenticated()){
+            req.logout();
+            console.log('user logged out');
+            next();
+        } else {
+            console.log('user not logged in');
+            next();
+        }
+    }
 }
