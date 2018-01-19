@@ -2,6 +2,7 @@ $(document).ready(()=>{
 
     $(".button-collapse").sideNav();
     $(".dropdown-button").dropdown();
+    $('.modal').modal();
 // Global Variables
 // ------------------------------------------------------------------------------------------------------- 
 

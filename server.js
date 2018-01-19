@@ -36,6 +36,14 @@ app.get('/', (req, res, next) =>  {
     res.render('index' , {name: 'Evan'});
 });
 
+app.post('/login', (req, res, next) => {
+    res.send(req.body);
+});
+
+app.post('/newUser', (req, res, next) => {
+    res.send(req.body);
+});
+
 app.listen(port, () => {
     console.log('App listening on port ' + port);
 });

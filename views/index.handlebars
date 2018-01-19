@@ -1,3 +1,42 @@
 
 
 <h1>Welcome {{name}}</h1>
+<br>
+<div class="row">
+    <div class="col m4" id="formBox">
+        <form action="/login" method="post">
+            <p>Username:</p>
+            <input type="text" name="username">
+            <p>Passowrd:</p>
+            <input type="password" name="password">
+            <input type="submit" value="Login">
+            <a class="modal-trigger" href="#modal1">Create New Account</a>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+        <form action="/newUser" method="post">
+            <p>First Name:</p>
+            <input type="text" name="firstName">
+            <p>Last Name:</p>
+            <input type="text" name="lastName">
+            <p>Username:</p>
+            <input type="text" name="username">
+            <p>Password:</p>
+            <input type="password" name="newPassword">
+            <p>Confirm Password:</p>
+            <input type="password" name="confirmPassword">
+            <p>Email:</p>
+            <input type="text" name="email">
+            <input type="submit" value="Create">
+        </form>
+    </div>
+    {{!-- <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div> --}}
+  </div>
+
+
