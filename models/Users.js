@@ -36,9 +36,10 @@ var UserSchema = new Schema({
     required: false  
   },
   administer: {
-      trype: Boolean,
+      type: Boolean,
       unique: false,
       default: false,
+      required: true
   }
 });
 

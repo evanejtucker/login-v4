@@ -19,19 +19,16 @@ passport.use(new LocalStrategy(
           if (err) { return console.log(err); }
           if (!user) {
               console.log("no user found");
-              return done(null, false, { message: 'no user found.' }); 
+              return done(null, false); 
           }
           if (user) {
-              if(user.validPassword(password, user.password)) {
-                  console.log("password correct");
-                  return done(null, user);
-              } else {
-                  console.log('password incorrect');
-                  return done(null, false); 
-              }
+            return done(null, user);
           }
         });
     }
-  ));
+));
 
-module.exports = passport;
+
+module.exports = {
+    passport: passport
+}

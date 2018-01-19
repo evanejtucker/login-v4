@@ -13,6 +13,28 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const auth = require('./controller/passport.js');
 
+const logoutUser = (req,res,next)=> {
+    if(req.isAuthenticated()){
+        req.logout();
+        console.log('user logged out');
+        next();
+    } else {
+        console.log('user not logged in');
+        next();
+    }
+}
+
+const checkAuthentication = (req,res,next)=> {
+    if(req.isAuthenticated()){
+        //if user is looged in, req.isAuthenticated() will return true 
+        console.log('user authenticated');
+        next();
+    } else{
+        console.log("user not authenticated");
+        res.redirect("/failure");
+    }
+}
+
     // handlebars
     app.engine('handlebars', exphbs({defaultLayout: 'main'}));
     app.set('view engine', 'handlebars');
@@ -41,48 +63,43 @@ db.once('open', function() {
   console.log("successfully connected to db");
 });
 
-// passport.serializeUser(function(user, done) {
-//     done(null, user.id);
-// });
-  
-// passport.deserializeUser(function(id, done) {
-//     User.findById(id, function(err, user) {
-//       done(err, user);
-//     });
-// });
-
-// passport.use(new LocalStrategy(
-//     function(username, password, done) {
-//       User.findOne({ username: username }, function (err, user) {
-//           if (err) { return console.log(err); }
-//           if (!user) {
-//               console.log("no user found");
-//               return done(null, false, { message: 'no user found.' }); 
-//           }
-//           if (user) {
-//               if(user.validPassword(password, user.password)) {
-//                   console.log("password correct");
-//                   return done(null, user);
-//               } else {
-//                   console.log('password incorrect');
-//                   return done(null, false); 
-//               }
-//           }
-//         });
-//     }
-//   ));
-
 app.get('/', (req, res, next) =>  {
     // res.send('Hello World!')
     res.render('index' , {name: 'Evan'});
 });
 
-app.post('/login', (req, res, next) => {
-    res.send(req.body);
+app.get('/failure', (req, res, next) =>  {
+    res.send('not authenticated');
 });
 
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/profile',
+                                   failureRedirect: '/failure'})
+);
+
 app.post('/newUser', (req, res, next) => {
-    res.send(req.body);
+    let info = req.body;
+    Users.findOne({username: info.newUsername}, (err, user)=> {
+        if(user) {
+            console.log('user already exists');
+        } else {
+            console.log('no user by that name');
+            let newUser = new Users({
+                username: info.newUsername, 
+                password: info.confirmPassword,
+                firstName: info.firstName,
+                lastName: info.lastName,
+                email: info.email,
+                administer: false
+            });
+            console.log(newUser);
+            newUser.save((error)=> {
+                if (error) return console.log(error);
+                console.log('user saved successfully');
+            });
+        }
+    });
+    res.redirect('/');
 });
 
 app.listen(port, () => {
