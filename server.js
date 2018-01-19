@@ -70,7 +70,7 @@ app.post('/newUser', (req, res, next) => {
                 email: info.email,
                 administer: false
             });
-            newUser.password = newUser.generateHash(info.confirmNewPassword);
+            newUser.password = newUser.generateHash(info.confirmPassword);
             console.log(newUser);
             newUser.save((error)=> {
                 if (error) return console.log(error);
