@@ -22,7 +22,13 @@ passport.use(new LocalStrategy(
               return done(null, false); 
           }
           if (user) {
-            return done(null, user);
+              if(user.validPassword(password, user.password)) {
+                console.log("password correct");
+                return done(null, user);
+              } else {
+                console.log('password incorrect');
+                return done(null, false); 
+            }
           }
         });
     }

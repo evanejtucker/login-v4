@@ -1,5 +1,6 @@
-// Require mongoose
+
 var mongoose = require("mongoose");
+var bcrypt   = require('bcrypt-nodejs');
 
 // Create a Schema class with mongoose
 var Schema = mongoose.Schema;
@@ -43,6 +44,14 @@ var UserSchema = new Schema({
   }
 });
 
+UserSchema.methods.generateHash = (password)=> {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(7));
+};
+
+UserSchema.methods.validPassword = (password, encrypted)=> {
+  console.log('Password: ' + password + " Encrypted: " + encrypted)
+  return bcrypt.compareSync(password, encrypted);
+};
 
 var User = mongoose.model("Users", UserSchema);
 
