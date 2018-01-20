@@ -1,2 +1,8 @@
 
 <h2>congrats {{user.firstName}} on successfully logging in!</h2>
+{{#if user.firstName}}
+<h3>{{user.lastName}}</h3>
+{{/if}}
+{{#if user.photo}}
+<h4>{{user.firstName}}</h4>
+{{/if}}

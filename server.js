@@ -43,7 +43,7 @@ db.once('open', function() {
   console.log("successfully connected to db");
 });
 
-
+// routes
 app.use('/', main);
 app.use('/profile', auth.checkAuthentication, profile);
 

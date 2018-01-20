@@ -9,7 +9,6 @@ router.get('/', (req, res, next) =>  {
 });
 
 router.get('/failure', (req, res, next) =>  {
-    console.log(req.body);
     res.render('index', {message: 'not authenticated'})
 });
 
@@ -28,7 +27,6 @@ router.post('/newUser', (req, res, next) => {
         if(user) {
             console.log('user already exists');
         } else {
-            console.log('no user by that name');
             let newUser = new Users({
                 username: info.newUsername, 
                 password: info.confirmPassword,
