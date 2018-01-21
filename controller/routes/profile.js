@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
   res.render('profile' , {user: req.user});
 });
 
-router.get('/allUsers', function (req, res, next) {
+router.get('/allUsers', auth.checkAdminister, function (req, res, next) {
   Users.find((err, user)=> {
     if (err) return console.error(err);
     res.send(user);

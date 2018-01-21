@@ -56,5 +56,15 @@ module.exports = {
             console.log('user not logged in');
             next();
         }
+    },
+
+    checkAdminister: (req, res, next)=> {
+        if (req.user.administer) {
+            next();
+        } else {
+            console.log('sorry, you must be an administer to continue');
+            res.redirect('/profile')
+        }
+        
     }
 }
