@@ -5,7 +5,7 @@ const Users = require('../../models/Users.js');
 const passport = require('passport');
 
 router.get('/', (req, res, next) =>  {
-    res.render('index' , {name: 'Evan'});
+    res.render('index');
 });
 
 router.get('/failure', (req, res, next) =>  {

@@ -12,9 +12,7 @@ const mongoose = require('mongoose');
 const Users = require('./models/Users.js');
 const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const auth = require('./controller/passport.js');
-
 
     // handlebars
     app.engine('handlebars', exphbs({defaultLayout: 'main'}));

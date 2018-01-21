@@ -13,12 +13,21 @@
     
     <nav id="navbar">
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo left">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-small-only">
-                <li><a href="#">Sass</a></li>
-                <li><a href="#">Components</a></li>
-                <li><a href="#" id="loginBtn">Login</a></li>
-            </ul>
+            {{#if user}}
+                <a href="/" class="brand-logo left">Welcome back {{user.firstName}}</a>
+                <ul id="nav-mobile" class="right hide-on-small-only">
+                    <li><a href="#"></a>settings</li>
+                    <li><a href="#">profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            {{else}}
+                <a href="/" class="brand-logo left">Welcome!</a>
+                <ul id="nav-mobile" class="right hide-on-small-only">
+                    <li><a href="#">Sass</a></li>
+                    <li><a href="#">Components</a></li>
+                    <li><a href="#" id="loginBtn">Login</a></li>
+                </ul>
+            {{/if}}
             <a href="#" data-activates="mobile-demo" class="button-collapse right show-on-small-only"><i class="material-icons">menu</i></a>
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="#">Sass</a></li>
