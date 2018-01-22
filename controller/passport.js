@@ -62,7 +62,8 @@ module.exports = {
             next();
         } else {
             console.log('sorry, you must be an administer to continue');
-            res.render('/profile', {message: 'sorry, you must be an administer to continue'})
+            req.flash('adminMessage', 'Sorry, you must be an administer to continue')
+            res.redirect('/profile');
         }
         
     }

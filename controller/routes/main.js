@@ -3,10 +3,9 @@ const router = express.Router()
 const auth = require('../passport.js');
 const Users = require('../../models/Users.js');
 const passport = require('passport');
-let message;
 
 router.get('/', (req, res, next) =>  {
-    res.render('index', {message: req.flash('loginMessage')});
+    res.render('index', {user: req.user, message: req.flash('loginMessage')});
 });
 
 router.get('/failure', (req, res, next) =>  {
@@ -24,11 +23,10 @@ router.post('/login',
 );
 
 router.post('/newUser', (req, res, next) => {
-    message = '';
     let info = req.body;
     Users.findOne({username: info.newUsername}, (err, user)=> {
         if(user) {
-            message = 'user already exists';
+            req.flash('accountMessage', 'user already exists :(');
             console.log('user already exists');
         } else {
             let newUser = new Users({
@@ -44,7 +42,7 @@ router.post('/newUser', (req, res, next) => {
             newUser.save((error)=> {
                 if (error) return console.log(error);
             });
-            message = 'user saved successfully';
+            req.flash('accountMessage', 'successfully created user :)');
         }
     });
     res.redirect('/');

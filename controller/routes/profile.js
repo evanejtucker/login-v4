@@ -5,7 +5,7 @@ const Users = require('../../models/Users.js');
 
 // define the home page route
 router.get('/', function (req, res, next) {
-  res.render('profile' , {user: req.user});
+  res.render('profile' , {user: req.user, message: req.flash('adminMessage')});
 });
 
 router.get('/allUsers', auth.checkAdminister, function (req, res, next) {
