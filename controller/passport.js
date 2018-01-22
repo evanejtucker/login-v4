@@ -19,7 +19,7 @@ passport.use(new LocalStrategy(
           if (err) { return console.log(err); }
           if (!user) {
               console.log("no user found");
-              return done(null, false); 
+              return done(null, false, {message: 'no user found'}); 
           }
           if (user) {
               if(user.validPassword(password, user.password)) {
@@ -44,7 +44,7 @@ module.exports = {
             next();
         } else{
             console.log("user not authenticated");
-            res.redirect("/failure");
+            res.redirect("/failure", {message: 'user not logged in'});
         }
     },
     logoutUser: (req, res, next)=> {
@@ -63,7 +63,7 @@ module.exports = {
             next();
         } else {
             console.log('sorry, you must be an administer to continue');
-            res.redirect('/profile')
+            res.redirect('/profile', {message: 'sorry, you must be an administer to continue'})
         }
         
     }

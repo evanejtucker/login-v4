@@ -16,7 +16,15 @@
             {{#if user}}
                 <a href="/" class="brand-logo left">Welcome back {{user.firstName}}</a>
                 <ul id="nav-mobile" class="right hide-on-small-only">
-                    <li><a href="#"></a>settings</li>
+                    <li><a href="#">settings</a></li>
+                    <li><a href="#">profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+                <a href="#" data-activates="mobile-demo" class="button-collapse right show-on-small-only"><i class="material-icons">person</i></a>
+                <ul class="side-nav" id="mobile-demo">
+                    <h3 class='black-text'>Login</h3>
+                    <br>
+                    <li><a href="#">settings</a></li>
                     <li><a href="#">profile</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
@@ -26,21 +34,23 @@
                     <form action='/login' method='post'>
                         <li><input placeholder="username" type="text" name="username"></li>
                         <li><input placeholder="password" type="password" name="password"></li>
+                        <li><input  id="loginBtn" type="submit" value="Login"></li>
+                        <li><a class="modal-trigger" href="#modal1">New Account</a></li>
+                    </form>
+                </ul>
+                <a href="#" data-activates="mobile-demo" class="button-collapse right show-on-small-only"><i class="material-icons">person</i></a>
+                <ul class="side-nav" id="mobile-demo">
+                    <h3 class='black-text'>Login</h3>
+                    <br>
+                    <form action='/login' method='post'>
+                        <li><input placeholder="username" type="text" name="username"></li>
+                        <li><input placeholder="password" type="password" name="password"></li>
                         <li><input type="submit" value="Login"></li>
                         <li><a class="modal-trigger" href="#modal1">New Account</a></li>
                     </form>
                 </ul>
             {{/if}}
-            <a href="#" data-activates="mobile-demo" class="button-collapse right show-on-small-only"><i class="material-icons">person</i></a>
-            <ul class="side-nav" id="mobile-demo">
-                <h3 class='black-text'>Login</h3>
-                <form action='/login' method='post'>
-                    <li><input placeholder="username" type="text" name="username"></li>
-                    <li><input placeholder="password" type="password" name="password"></li>
-                    <li><input type="submit" value="Login"></li>
-                    <li><a class="modal-trigger" href="#modal1">New Account</a></li>
-                </form>
-            </ul>
+            
         </div>
     </nav>
 

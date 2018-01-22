@@ -3,17 +3,18 @@ const router = express.Router()
 const auth = require('../passport.js');
 const Users = require('../../models/Users.js');
 const passport = require('passport');
+let message;
 
 router.get('/', (req, res, next) =>  {
-    res.render('index');
+    res.render('index', {message: message});
 });
 
 router.get('/failure', (req, res, next) =>  {
-    res.render('index', {message: 'not authenticated'})
+    res.render('index', {message: message});
 });
 
 router.get('/logout', auth.logoutUser, (req, res, next)=> {
-    res.redirect('/');
+    res.render('index', {message: 'user logged out'});
 })
 
 router.post('/login',
@@ -22,9 +23,11 @@ router.post('/login',
 );
 
 router.post('/newUser', (req, res, next) => {
+    message = '';
     let info = req.body;
     Users.findOne({username: info.newUsername}, (err, user)=> {
         if(user) {
+            message = 'user already exists';
             console.log('user already exists');
         } else {
             let newUser = new Users({
@@ -39,8 +42,8 @@ router.post('/newUser', (req, res, next) => {
             console.log(newUser);
             newUser.save((error)=> {
                 if (error) return console.log(error);
-                console.log('user saved successfully');
             });
+            message = 'user saved successfully';
         }
     });
     res.redirect('/');
