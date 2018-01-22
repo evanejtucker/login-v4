@@ -44,7 +44,7 @@ module.exports = {
             next();
         } else{
             console.log("user not authenticated");
-            res.redirect("/failure", {message: 'user not logged in'});
+            res.render("index", {message: 'user not logged in'});
         }
     },
     logoutUser: (req, res, next)=> {
@@ -63,7 +63,7 @@ module.exports = {
             next();
         } else {
             console.log('sorry, you must be an administer to continue');
-            res.redirect('/profile', {message: 'sorry, you must be an administer to continue'})
+            res.render('/profile', {message: 'sorry, you must be an administer to continue'})
         }
         
     }

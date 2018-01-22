@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 const Users = require('./models/Users.js');
 const session = require('express-session');
 const passport = require('passport');
+const flash = require('connect-flash');
 const auth = require('./controller/passport.js');
 
     // handlebars
@@ -31,6 +32,7 @@ const auth = require('./controller/passport.js');
     app.use(express.static('public'));
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use(flash());
 
 // mongoose
 mongoose.connect('mongodb://localhost/login-v4');
