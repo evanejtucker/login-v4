@@ -6,20 +6,21 @@ const passport = require('passport');
 let message;
 
 router.get('/', (req, res, next) =>  {
-    res.render('index', {message: message});
+    res.render('index', {message: req.flash('loginMessage')});
 });
 
 router.get('/failure', (req, res, next) =>  {
-    res.render('index', {message: message});
+    res.render('index', {message: req.flash('loginMessage')});
 });
 
 router.get('/logout', auth.logoutUser, (req, res, next)=> {
-    res.render('index', {message: 'user logged out'});
+    res.render('index', {message: req.flash('logoutMessage')});
 })
 
 router.post('/login',
   passport.authenticate('local', { successRedirect: '/profile',
-                                   failureRedirect: '/failure'})
+                                   failureRedirect: '/failure',
+                                   failureFlash: true })
 );
 
 router.post('/newUser', (req, res, next) => {

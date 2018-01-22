@@ -14,12 +14,13 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new LocalStrategy(
-    function(username, password, done) {
+    {passReqToCallback : true},
+    function(req, username, password, done) {
       Users.findOne({ username: username }, function (err, user) {
           if (err) { return console.log(err); }
           if (!user) {
               console.log("no user found");
-              return done(null, false, {message: 'no user found'}); 
+              return done(null, false, req.flash('loginMessage', 'no user found')); 
           }
           if (user) {
               if(user.validPassword(password, user.password)) {
@@ -27,7 +28,7 @@ passport.use(new LocalStrategy(
                 return done(null, user);
               } else {
                 console.log('password incorrect');
-                return done(null, false); 
+                return done(null, false, req.flash('loginMessage', 'incorrect password')); 
             }
           }
         });
@@ -39,21 +40,19 @@ module.exports = {
     passport: passport,
     checkAuthentication: (req, res, next)=> {
         if(req.isAuthenticated()){
-            //if user is looged in, req.isAuthenticated() will return true 
             console.log('user authenticated');
             next();
         } else{
             console.log("user not authenticated");
-            res.render("index", {message: 'user not logged in'});
+            res.render("index", {message: 'not logged in'});
         }
     },
     logoutUser: (req, res, next)=> {
         if(req.isAuthenticated()){
             req.logout();
-            console.log('user logged out');
+            req.flash('logoutMessage', 'Successfully Logged Out!');
             next();
         } else {
-            console.log('user not logged in');
             next();
         }
     },
