@@ -8,6 +8,10 @@ router.get('/', (req, res, next) =>  {
     res.render('index', {user: req.user, message: req.flash('loginMessage')});
 });
 
+router.get('/signup', (req, res, next)=> {
+    res.render('index', {user: req.user, message: req.flash('accountMessage')});
+});
+
 router.get('/failure', (req, res, next) =>  {
     res.render('index', {message: req.flash('loginMessage')});
 });
@@ -28,6 +32,7 @@ router.post('/newUser', (req, res, next) => {
         if(user) {
             req.flash('accountMessage', 'user already exists :(');
             console.log('user already exists');
+            res.redirect('/signup');
         } else {
             let newUser = new Users({
                 username: info.newUsername, 
@@ -39,13 +44,15 @@ router.post('/newUser', (req, res, next) => {
             });
             newUser.password = newUser.generateHash(info.confirmPassword);
             console.log(newUser);
+            req.flash('accountMessage', 'something went wrong :(');
             newUser.save((error)=> {
                 if (error) return console.log(error);
+                req.flash('accountMessage', 'successfully created user :)');
             });
-            req.flash('accountMessage', 'successfully created user :)');
+            res.redirect('/signup');
         }
     });
-    res.redirect('/');
+    
 });
   
 module.exports = router

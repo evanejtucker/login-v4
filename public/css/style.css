@@ -13,7 +13,7 @@ body {
     color: white;
 }
 
-#loginBtn {
+.loginBtn {
     background: rgb(250, 227, 100);
     color: white;
     width: 75px;
