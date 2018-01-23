@@ -18,14 +18,13 @@ const enableButton = (button)=> {
     $(button).attr('type', 'submit');
 }
 
-const checkVals = (username, password)=> {
-    disableButton('.loginBtn');
-    console.log($(username).val());
+const checkVals = (username, password, button)=> {
+    enableButton(button);
     if($(username).val() === '' || $(password).val()=== '') {
         console.log('missing input');
+        disableButton(button);
     } else {
         console.log('good to go!');
-        enableButton('.loginBtn');
     }
 }
 
@@ -36,7 +35,7 @@ const checkVals = (username, password)=> {
 
 
 $('.loginBtn').on('click', ()=> {
-    checkVals('.usernameField', '.passwordField');
+    checkVals('.usernameField', '.passwordField', '.loginBtn');
 });
 
 

@@ -32,9 +32,9 @@
                 <a href="/" class="brand-logo left">Welcome!</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <form action='/login' method='post'>
-                        <li><input class='usernameField' placeholder="username" type="text" name="username"></li>
-                        <li><input class='passwordField' placeholder="password" type="password" name="password"></li>
-                        <li><input class='loginBtn' type="submit" value="Login"></li>
+                        <li class='topInput'><input class='loginInput usernameField' id='topUsername' placeholder="username" type="text" name="username"></li>
+                        <li class='topInput'><input class='loginInput passwordField' placeholder="password" type="password" name="password"></li>
+                        <li class='topInput'><input class='loginBtn' type="submit" value="Login"></li>
                         <li><a class="modal-trigger" href="#modal1">New Account</a></li>
                     </form>
                 </ul>
@@ -43,8 +43,8 @@
                     <h3 class='black-text'>Login</h3>
                     <br>
                     <form action='/login' method='post'>
-                        <li><input class='usernameField' placeholder="username" type="text" name="username"></li>
-                        <li><input class='passwordField' placeholder="password" type="password" name="password"></li>
+                        <li><input class='loginInput sideNav usernameField' placeholder="username" type="text" name="username"></li>
+                        <li><input class='loginInput sideNav passwordField' placeholder="password" type="password" name="password"></li>
                         <li><input class='loginBtn' type="submit" value="Login"></li>
                         <li><a class="modal-trigger" href="#modal1">New Account</a></li>
                     </form>

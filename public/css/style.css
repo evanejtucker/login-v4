@@ -13,9 +13,23 @@ body {
     color: white;
 }
 
+.sideNav::placeholder {
+    color: black;
+}
+
+#mobile-demo {
+    padding-left: 15px;
+    padding-right: 15px; 
+}
+
+.topInput {
+    margin-right: 15px;
+}
+
 .loginBtn {
     background: rgb(250, 227, 100);
-    color: white;
+    color: #3bb9ff;
+    font-weight: bold;
     width: 75px;
     height: 40px;
     border-radius: 10px;
