@@ -18,6 +18,9 @@
                 <ul id="nav-mobile" class="right hide-on-small-only">
                     <li><a href="#">settings</a></li>
                     <li><a href="#">profile</a></li>
+                    {{#if user.administer}}
+                        <li><a href="/profile/admin">Amin View</a></li>
+                    {{/if}}
                     <li><a href="/logout">Logout</a></li>
                 </ul>
                 <a href="#" data-activates="mobile-demo" class="button-collapse right show-on-small-only"><i class="material-icons">person</i></a>
@@ -26,6 +29,9 @@
                     <br>
                     <li><a href="#">settings</a></li>
                     <li><a href="#">profile</a></li>
+                    {{#if user.administer}}
+                        <li><a href="/profile/admin">Amin View</a></li>
+                    {{/if}}
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             {{else}}
