@@ -15,9 +15,9 @@ router.get('/allUsers', auth.checkAdminister, function (req, res, next) {
   })
 });
 
-router.get('/admin', auth.checkAdminister, (req, res, next)=> {
-  res.render('admin');
-})
+router.get('/admin', auth.checkAdminister, function(req, res, next) {
+  res.render('admin', {user: req.user});
+});
 
 
 module.exports = router

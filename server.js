@@ -13,6 +13,7 @@ const Users = require('./models/Users.js');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
+const path = require('path');
 const auth = require('./controller/passport.js');
 
     // handlebars
@@ -29,7 +30,7 @@ const auth = require('./controller/passport.js');
         resave: false,
         saveUninitialized: true,
     }));
-    app.use(express.static('public'));
+    app.use(express.static(path.join(__dirname, 'public')));
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(flash());
