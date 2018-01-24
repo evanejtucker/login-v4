@@ -8,6 +8,7 @@ const morgan = require('morgan');
 const profile = require('./controller/routes/profile');
 const main = require('./controller/routes/main');
 const exphbs  = require('express-handlebars');
+const Handlebars = require('handlebars');
 const mongoose = require('mongoose');
 const Users = require('./models/Users.js');
 const session = require('express-session');
