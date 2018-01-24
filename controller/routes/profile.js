@@ -18,7 +18,6 @@ router.get('/allUsers', auth.checkAdminister, function (req, res, next) {
 router.get('/admin', auth.checkAdminister, function(req, res, next) {
   Users.find((err, users)=> {
     if(err) return console.log(err);
-    console.log(users)
     let allUsers = users; 
     res.render('admin', {user: req.user, allUsers: allUsers});
   });
